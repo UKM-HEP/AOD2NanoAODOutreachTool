@@ -6,6 +6,12 @@ Tool to convert AOD to NanoAOD file format for the purpose of education and outr
 
 The tool can be used to read events from CMS AOD files and convert them to a reduced NanoAOD data format. Note that the tool is published for the documentation of the related datasets below and may need significant experiment-specific knowledge to be used.
 
+## Opendata Client
+
+```bash
+docker run -i -t --rm cernopendata/cernopendata-client --help
+```
+
 ## Build module
 
 Note: the main branch is developed on top of 
