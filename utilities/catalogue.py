@@ -1,37 +1,37 @@
 datasets = {
     # Higgs-to-four-lepton analysis
     # http://opendata.cern.ch/record/5500
-    '/DoubleElectron/Run2011A-12Oct2013-v1/AOD' :
+    'DoubleElectron/Run2011A-12Oct2013-v1/AOD' :
     {
         'data' : True,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.MQXP.QNMB',
     },
     
-    '/DoubleMu/Run2011A-12Oct2013-v1/AOD' :
+    'DoubleMu/Run2011A-12Oct2013-v1/AOD' :
     {
         'data' : True,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.RZ34.QR6N',
     },
     
-    '/DoubleMuParked/Run2012B-22Jan2013-v1/AOD' :
+    'DoubleMuParked/Run2012B-22Jan2013-v1/AOD' :
     {
         'data' : True,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.YLIC.86ZZ',
     },
 
-    '/DoubleMuParked/Run2012C-22Jan2013-v1/AOD' :
+    'DoubleMuParked/Run2012C-22Jan2013-v1/AOD' :
     {
         'data' : True,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.M5AD.Y3V3',
     },
 
-    '/DoubleElectron/Run2012B-22Jan2013-v1/AOD' :
+    'DoubleElectron/Run2012B-22Jan2013-v1/AOD' :
     {
         'data' : True,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.S0H8.LBD3',
     },
 
-    '/DoubleElectron/Run2012C-22Jan2013-v1/AOD' :
+    'DoubleElectron/Run2012C-22Jan2013-v1/AOD' :
     {
         'data' : True,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.SINM.BV86',
@@ -126,6 +126,24 @@ datasets = {
         'data' : False,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.XH95.JNSE',
     },
-    ##########
+    #########
+    
+    'W3JetsToLNu_TuneZ2Star_8TeV-madgraph' :
+    {
+        'data' : False,
+        'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.HHCJ.TVXH',
+    },
+
+    'W1JetsToLNu_TuneZ2Star_8TeV-madgraph' :
+    {
+        'data' : False,
+	'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.REHM.JKUH',
+    },
+
+    'W2JetsToLNu_TuneZ2Star_8TeV-madgraph' :
+    {
+        'data' : False,
+        'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.DELK.2V7R',
+    },
     
 }

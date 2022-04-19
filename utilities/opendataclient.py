@@ -13,6 +13,4 @@ for ientry in datasets:
     files = list(filter( lambda x : 'uri' in x , files ))
     
     xrdcp = 'docker run -v ${PWD}/../data:/mnt:rw -i --rm cmsopendata/cmssw_5_3_32-slc6_amd64_gcc472 xrdcp' if 'CMSSW_' not in cwd else 'xrdcp'
-    for ifile in files:
-        os.system( '%s %s /mnt' %( xrdcp , ifile.replace("\"","").split("uri: ")[-1] ) )
-    break
+    for ifile in files: os.system( '%s %s /mnt' %( xrdcp , ifile.replace("\"","").split("uri: ")[-1] ) )
