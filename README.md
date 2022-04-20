@@ -22,7 +22,7 @@ https://github.com/cms-opendata-analyses/AOD2NanoAODOutreachTool -b v1.2 AOD2Nan
 
 ```bash
 cd CMSSW_5_3_32/src
-cmsenv
+#cmsenv # skip! 
 mkdir workspace
 cd workspace
 git clone https://github.com/UKM-HEP/AOD2NanoAODOutreachTool.git AOD2NanoAOD
