@@ -145,5 +145,29 @@ datasets = {
         'data' : False,
         'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.DELK.2V7R',
     },
+
+        'MuOnia/Run2012B-22Jan2013-v1/AOD' :
+    {
+        'data' : True,
+        'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.Q4T1.HLNS',
+    },
+    
+    'MuOnia/Run2012C-22Jan2013-v1/AOD' :
+    {
+        'data' : True,
+        'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.Q4T1.HLNS',
+    },
+
+    'MuOniaParked/Run2012B-22Jan2013-v1/AOD' :
+    {
+        'data' : True,
+        'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.ZCFQ.Q557',
+    },
+
+    'MuOniaParked/Run2012C-22Jan2013-v1/AOD' :
+    {
+        'data' : True,
+        'doi' : 'http://doi.org/10.7483/OPENDATA.CMS.89LJ.6VKB',
+    },
     
 }

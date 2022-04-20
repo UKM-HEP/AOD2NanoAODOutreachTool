@@ -4,6 +4,8 @@ from catalogue import datasets
 
 cwd = os.getcwd()
 
+DOCKER_IMAGE="siewyanhoh/cmssw_5_3_32:1.0" # cmsopendata/cmssw_5_3_32-slc6_amd64_gcc472
+
 for ientry in datasets:
     handle= '--title '+ientry if not datasets[ientry]['data'] else '--doi '+datasets[ientry]['doi'].split('http://doi.org/')[-1]
     cmd='docker run -i -t --rm cernopendata/cernopendata-client get-metadata %s --output-value files' %( handle )
@@ -12,5 +14,5 @@ for ientry in datasets:
     files = list(map( lambda x : x.decode("utf-8").strip() , listdict ))
     files = list(filter( lambda x : 'uri' in x , files ))
     
-    xrdcp = 'docker run -v ${PWD}/../data:/mnt:rw -i --rm cmsopendata/cmssw_5_3_32-slc6_amd64_gcc472 xrdcp' if 'CMSSW_' not in cwd else 'xrdcp'
+    xrdcp = 'docker run --privileged -v ${PWD}/../data:/mnt:rw -i --rm %s xrdcp' %( DOCKER_IMAGE ) if 'CMSSW_' not in cwd else 'xrdcp'
     for ifile in files: os.system( '%s %s /mnt' %( xrdcp , ifile.replace("\"","").split("uri: ")[-1] ) )
