@@ -1,20 +1,16 @@
 #include "AOD2NanoAOD.h"
 
-void AOD2NanoAOD(const edm::Event &iEvent){
+void AOD2NanoAOD::fillJet(edm::Handle<reco::CaloJetCollection> &jets, edm::Handle<reco::JetTagCollection> &btags){
 
   // Jets
   // Jet ID recommendations:
   // https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetID#Recommendations_for_8_TeV_data_a
   // B-tag recommendations:
   // https://twiki.cern.ch/twiki/bin/viewauth/CMS/BtagRecommendation53XReReco
-  //Handle<CaloJetCollection> jets;
-  //iEvent.getByLabel(InputTag("ak5CaloJets"), jets);
-  //Handle<JetTagCollection> btags;
-  //iEvent.getByLabel(InputTag("combinedSecondaryVertexBJetTags"), btags);
 
   const float jet_min_pt = 15;
   value_jet_n = 0;
-  std::vector<CaloJet> selectedJets;
+  //std::vector<CaloJet> selectedJets;
   for (auto it = jets->begin(); it != jets->end(); it++) {
     if (it->pt() > jet_min_pt) {
       selectedJets.emplace_back(*it);

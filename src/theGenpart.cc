@@ -1,13 +1,8 @@
 #include "AOD2NanoAOD.h"
 
-void AOD2NanoAOD::fillGenpart(const edm::Event &iEvent){
-
-  // Generator particles
-  //Handle<GenParticleCollection> gens;
-  //iEvent.getByLabel(InputTag("genParticles"), gens);
+void AOD2NanoAOD::fillGenpart(edm::Handle<reco::GenParticleCollection> &gens){
   
   value_gen_n = 0;
-  std::vector<GenParticle> interestingGenParticles;
   for (auto it = gens->begin(); it != gens->end(); it++) {
     const auto status = it->status();
     const auto pdgId = std::abs(it->pdgId());

@@ -1,6 +1,6 @@
 #include "AOD2NanoAOD.h"
 
-void AOD2NanoAOD::fillTau(const edm::Event &iEvent){
+void AOD2NanoAOD::fillPhoton(edm::Handle<reco::PhotonCollection> &photons){
 
   // Photons
   //Handle<PhotonCollection> photons;
@@ -8,7 +8,7 @@ void AOD2NanoAOD::fillTau(const edm::Event &iEvent){
 
   value_ph_n = 0;
   const float ph_min_pt = 5;
-  std::vector<Photon> selectedPhotons;
+  //std::vector<reco::Photon> selectedPhotons;
   for (auto it = photons->begin(); it != photons->end(); it++) {
     if (it->pt() > ph_min_pt) {
       selectedPhotons.emplace_back(*it);

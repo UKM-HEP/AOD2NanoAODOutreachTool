@@ -1,10 +1,6 @@
 #include "AOD2NanoAOD.h"
 
-void AOD2NanoAOD::fillMET(const edm::Event &iEvent){
-
-  // MET
-  //Handle<PFMETCollection> met;
-  //iEvent.getByLabel(InputTag("pfMet"), met);
+void AOD2NanoAOD::fillMET(edm::Handle<reco::PFMETCollection> &met){
   
   value_met_pt = met->begin()->pt();
   value_met_phi = met->begin()->phi();
@@ -14,5 +10,5 @@ void AOD2NanoAOD::fillMET(const edm::Event &iEvent){
   value_met_covxx = cov[0][0];
   value_met_covxy = cov[0][1];
   value_met_covyy = cov[1][1];
-
+  
 }

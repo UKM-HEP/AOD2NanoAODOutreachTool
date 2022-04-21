@@ -127,60 +127,70 @@ AOD2NanoAOD::~AOD2NanoAOD() {}
 void AOD2NanoAOD::analyze(const edm::Event &iEvent,
                           const edm::EventSetup &iSetup) {
 
-  //using namespace edm;
-  //using namespace reco;
-  //using namespace std;
+  using namespace edm;
+  using namespace reco;
+  using namespace std;
+
+  // persist elements initialization
+  selectedMuons.clear();
+  selectedElectrons.clear();
+  selectedTaus.clear();
+  selectedPhotons.clear();
+  selectedJets.clear();
+  interestingGenParticles.clear();
 
   // Event information
   value_run = iEvent.run();
   value_lumi_block = iEvent.luminosityBlock();
   value_event = iEvent.id().event();
 
-  fillTrigger(iEvent);
+  // Trigger results
+  Handle<TriggerResults> trigger;
+  iEvent.getByLabel(InputTag("TriggerResults", "", "HLT"), trigger);
+  fillTrigger(trigger);
 
   // Vertex
   Handle<VertexCollection> vertices;
   iEvent.getByLabel(InputTag("offlinePrimaryVertices"), vertices);
-  fillVertex(iEvent);
+  fillVertex(vertices);
 
   // Muons
   Handle<MuonCollection> muons;
   iEvent.getByLabel(InputTag("muons"), muons);
-  fillMuon(iEvent);
+  fillMuon(muons,vertices);
 
   // Electrons
   Handle<GsfElectronCollection> electrons;
   iEvent.getByLabel(InputTag("gsfElectrons"), electrons);
-  fillElectron(iEvent);
+  fillElectron(electrons,vertices);
 
   // Taus
-  Handle<PFTauCollection> taus;
-  iEvent.getByLabel(InputTag("hpsPFTauProducer"), taus);
   fillTau(iEvent);
 
   // Photons
   Handle<PhotonCollection> photons;
   iEvent.getByLabel(InputTag("photons"), photons);
-  fillPhoton(iEvent);
+  fillPhoton(photons);
 
   // MET
   Handle<PFMETCollection> met;
   iEvent.getByLabel(InputTag("pfMet"), met);
-  fillMET(iEvent);
+  fillMET(met);
 
   // Jets
   Handle<CaloJetCollection> jets;
   iEvent.getByLabel(InputTag("ak5CaloJets"), jets);
   Handle<JetTagCollection> btags;
   iEvent.getByLabel(InputTag("combinedSecondaryVertexBJetTags"), btags);
-  fillJet(iEvent);
-  
+  fillJet(jets,btags);
+
   // Generator particles
   if (!isData){
     Handle<GenParticleCollection> gens;
     iEvent.getByLabel(InputTag("genParticles"), gens);
-    fillGenpart(iEvent);
+    fillGenpart(gens);
   }
+
   tree->Fill();
 
 }

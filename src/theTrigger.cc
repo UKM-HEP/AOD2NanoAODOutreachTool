@@ -1,14 +1,15 @@
 #include "AOD2NanoAOD.h"
 
-void AOD2NanoAOD::fillTrigger(const edm::Event &iEvent){
+void AOD2NanoAOD::fillTrigger(edm::Handle<edm::TriggerResults> &trigger){
   
   // Trigger results
-  Handle<TriggerResults> trigger;
-  iEvent.getByLabel(InputTag("TriggerResults", "", "HLT"), trigger);
+  //edm::Handle<edm::TriggerResults> trigger;
+  //iEvent.getByLabel(InputTag("TriggerResults", "", "HLT"), trigger);
+
   auto psetRegistry = edm::pset::Registry::instance();
   auto triggerParams = psetRegistry->getMapped(trigger->parameterSetID());
-  TriggerNames triggerNames(*triggerParams);
-  TriggerResultsByName triggerByName(&(*trigger), &triggerNames);
+  edm::TriggerNames triggerNames(*triggerParams);
+  edm::TriggerResultsByName triggerByName(&(*trigger), &triggerNames);
   for (size_t i = 0; i < interestingTriggers.size(); i++) {
     value_trig[i] = false;
   }

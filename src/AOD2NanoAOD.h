@@ -61,10 +61,6 @@
 
 #include "helper.h"
 
-using namespace edm;
-using namespace reco;
-using namespace std;
-
 const static std::vector<std::string> interestingTriggers = {
   "HLT_IsoMu24_eta2p1",
   "HLT_IsoMu24",
@@ -80,15 +76,15 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   virtual void beginJob();
   virtual void analyze(const edm::Event &, const edm::EventSetup &);
   virtual void endJob();
-  virtual void fillTrigger(const edm::Event &iEvent);
-  virtual void fillVertex(const edm::Event &iEvent);
-  virtual void fillMuon(const edm::Event &iEvent);
-  virtual void fillElectron(const edm::Event &iEvent);
+  virtual void fillTrigger(edm::Handle<edm::TriggerResults> &);
+  virtual void fillVertex(edm::Handle<reco::VertexCollection> &);
+  virtual void fillMuon(edm::Handle<reco::MuonCollection> &, edm::Handle<reco::VertexCollection> &);
+  virtual void fillElectron(edm::Handle<reco::GsfElectronCollection> &, edm::Handle<reco::VertexCollection> &);
   virtual void fillTau(const edm::Event &iEvent);
-  virtual void fillPhoton(const edm::Event &iEvent);
-  virtual void fillMET(const edm::Event &iEvent);
-  virtual void fillJet(const edm::Event &iEvent);
-  virtual void fillGenpart(const edm::Event &iEvent);
+  virtual void fillPhoton(edm::Handle<reco::PhotonCollection> &);
+  virtual void fillMET(edm::Handle<reco::PFMETCollection> &);
+  virtual void fillJet(edm::Handle<reco::CaloJetCollection> &, edm::Handle<reco::JetTagCollection> &);
+  virtual void fillGenpart(edm::Handle<reco::GenParticleCollection> &);
 
   bool providesGoodLumisection(const edm::Event &iEvent);
   bool isData;
@@ -216,8 +212,12 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   edm::Service<TFileService> fs;
 
   // persist elements
-  
-
+  std::vector<reco::Muon> selectedMuons;
+  std::vector<reco::GsfElectron> selectedElectrons;
+  std::vector<reco::PFTau> selectedTaus;
+  std::vector<reco::Photon> selectedPhotons;
+  std::vector<reco::CaloJet> selectedJets;
+  std::vector<reco::GenParticle> interestingGenParticles;
 };
 
 #endif

@@ -6,46 +6,46 @@ void AOD2NanoAOD::fillTau(const edm::Event &iEvent){
   // References for Tau collections and IDs:
   // https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuidePFTauID#53X
   // https://twiki.cern.ch/twiki/bin/view/CMSPublic/NutShellRecipeFor5312AndNewer
-  
-  //Handle<PFTauCollection> taus;
-  //iEvent.getByLabel(InputTag("hpsPFTauProducer"), taus);
 
-  Handle<PFTauDiscriminator> tausLooseIso, tausVLooseIso, tausMediumIso, tausTightIso,
+  edm::Handle<reco::PFTauCollection> taus;
+  iEvent.getByLabel(edm::InputTag("hpsPFTauProducer"), taus);
+  
+  edm::Handle<reco::PFTauDiscriminator> tausLooseIso, tausVLooseIso, tausMediumIso, tausTightIso,
     tausDecayMode, tausLooseEleRej, tausMediumEleRej,
     tausTightEleRej, tausLooseMuonRej, tausMediumMuonRej,
     tausTightMuonRej, tausRawIso;
-
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByDecayModeFinding"),
+  
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByDecayModeFinding"),
 		    tausDecayMode);
 
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByRawCombinedIsolationDBSumPtCorr"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByRawCombinedIsolationDBSumPtCorr"),
 		    tausRawIso);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByVLooseCombinedIsolationDBSumPtCorr"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByVLooseCombinedIsolationDBSumPtCorr"),
 		    tausVLooseIso);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByLooseCombinedIsolationDBSumPtCorr"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByLooseCombinedIsolationDBSumPtCorr"),
 		    tausLooseIso);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByMediumCombinedIsolationDBSumPtCorr"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByMediumCombinedIsolationDBSumPtCorr"),
 		    tausMediumIso);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByTightCombinedIsolationDBSumPtCorr"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByTightCombinedIsolationDBSumPtCorr"),
 		    tausTightIso);
 
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByLooseElectronRejection"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByLooseElectronRejection"),
 		    tausLooseEleRej);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByMediumElectronRejection"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByMediumElectronRejection"),
 		    tausMediumEleRej);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByTightElectronRejection"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByTightElectronRejection"),
 		    tausTightEleRej);
 
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByLooseMuonRejection"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByLooseMuonRejection"),
 		    tausLooseMuonRej);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByMediumMuonRejection"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByMediumMuonRejection"),
 		    tausMediumMuonRej);
-  iEvent.getByLabel(InputTag("hpsPFTauDiscriminationByTightMuonRejection"),
+  iEvent.getByLabel(edm::InputTag("hpsPFTauDiscriminationByTightMuonRejection"),
 		    tausTightMuonRej);
 
   const float tau_min_pt = 15;
   value_tau_n = 0;
-  std::vector<PFTau> selectedTaus;
+  //std::vector<reco::PFTau> selectedTaus;
   for (auto it = taus->begin(); it != taus->end(); it++) {
     if (it->pt() > tau_min_pt) {
       selectedTaus.emplace_back(*it);

@@ -1,13 +1,10 @@
 #include "AOD2NanoAOD.h"
 
-void AOD2NanoAOD::fillMuon(const edm::Event &iEvent, ){
-  // Muons
-  //Handle<MuonCollection> muons;
-  //iEvent.getByLabel(InputTag("muons"), muons);
+void AOD2NanoAOD::fillMuon(edm::Handle<reco::MuonCollection> &muons, edm::Handle<reco::VertexCollection> &vertices){
 
   value_mu_n = 0;
   const float mu_min_pt = 3;
-  std::vector<Muon> selectedMuons;
+  //std::vector<reco::Muon> selectedMuons;
   for (auto it = muons->begin(); it != muons->end(); it++) {
     if (it->pt() > mu_min_pt) {
       selectedMuons.emplace_back(*it);
@@ -30,6 +27,8 @@ void AOD2NanoAOD::fillMuon(const edm::Event &iEvent, ){
       value_mu_tightid[value_mu_n] = muon::isTightMuon(*it, *vertices->begin());
       value_mu_softid[value_mu_n] = muon::isSoftMuon(*it, *vertices->begin());
       auto trk = it->globalTrack();
+      math::XYZPoint pv(vertices->begin()->position());
+
       if (trk.isNonnull()) {
         value_mu_dxy[value_mu_n] = trk->dxy(pv);
         value_mu_dz[value_mu_n] = trk->dz(pv);

@@ -1,14 +1,10 @@
 #include "AOD2NanoAOD.h"
 
-void AOD2NanoAOD::fillElectron(const edm::Event &iEvent){
-
-  // Electrons
-  //Handle<GsfElectronCollection> electrons;
-  //iEvent.getByLabel(InputTag("gsfElectrons"), electrons);
+void AOD2NanoAOD::fillElectron(edm::Handle<reco::GsfElectronCollection> &electrons, edm::Handle<reco::VertexCollection> &vertices){
 
   value_el_n = 0;
   const float el_min_pt = 5;
-  std::vector<GsfElectron> selectedElectrons;
+  //std::vector<reco::GsfElectron> selectedElectrons;
   for (auto it = electrons->begin(); it != electrons->end(); it++) {
     if (it->pt() > el_min_pt) {
       selectedElectrons.emplace_back(*it);
@@ -27,6 +23,8 @@ void AOD2NanoAOD::fillElectron(const edm::Event &iEvent){
         value_el_pfreliso03all[value_el_n] = -999;
       }
       auto trk = it->gsfTrack();
+      math::XYZPoint pv(vertices->begin()->position());
+
       value_el_dxy[value_el_n] = trk->dxy(pv);
       value_el_dz[value_el_n] = trk->dz(pv);
       value_el_dxyErr[value_el_n] = trk->d0Error();
