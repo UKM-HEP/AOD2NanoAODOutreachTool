@@ -1,6 +1,3 @@
-#ifndef AOD2NANOAOD_H
-#define AOD2NANOAOD_H
-
 #include <memory>
 
 #include "FWCore/Framework/interface/EDAnalyzer.h"
@@ -219,5 +216,3 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   std::vector<reco::CaloJet> selectedJets;
   std::vector<reco::GenParticle> interestingGenParticles;
 };
-
-#endif
