@@ -24,7 +24,7 @@ process.source = cms.Source(
 
 # Set global tag
 # We don't have set the global tag for the educational samples. This simplifies running the code since we don't have to access the database.
-#process.GlobalTag.globaltag = "START53_V27::All"
+#process.GlobalTag.globaltag = "USEGLOBALTAG::All"
 
 # Number of events to be skipped (0 by default)
 process.source.skipEvents = cms.untracked.uint32(0)

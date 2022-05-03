@@ -31,7 +31,7 @@ process.source = cms.Source(
 
 # Set global tag
 # We don't have set the global tag for the educational samples. This simplifies running the code since we don't have to access the database.
-#process.GlobalTag.globaltag = "FT_R_53_V18::All"
+#process.GlobalTag.globaltag = "USEGLOBALTAG::All"
 
 # Apply JSON file with lumi mask (needs to be done after the process.source definition)
 goodJSON = "data/Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
