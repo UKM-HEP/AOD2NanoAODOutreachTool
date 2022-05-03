@@ -16,7 +16,7 @@ process.options = cms.untracked.PSet(wantSummary=cms.untracked.bool(True))
 process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(-1))
 
 # Define files of dataset
-files = FileUtils.loadListFromFile("test/test.txt")
+files = FileUtils.loadListFromFile("test/CMS_MonteCarlo2012_test_ZZTo4e_8TeV-powheg-pythia6.txt")
 #files.extend(FileUtils.loadListFromFile("data/CMS_MonteCarlo2012_Summer12_DR53X_TTbar_8TeV-Madspin_aMCatNLO-herwig_AODSIM_PU_S10_START53_V19-v2_20000_file_index.txt"))
 
 process.source = cms.Source(
