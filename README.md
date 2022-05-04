@@ -30,6 +30,17 @@ cd AOD2NanoAOD
 scram b -j8
 ```
 
+For local development, checkout ```datasets```
+```bash
+git clone --recursive https://github.com/UKM-HEP/AOD2NanoAODOutreachTool.git AOD2NanoAOD
+```
+or
+```bash
+git clone https://github.com/UKM-HEP/AOD2NanoAODOutreachTool.git AOD2NanoAOD
+cd AOD2NanoAOD
+git submodule update --init --recursive
+```
+
 ## Test configuration locally
 
 ```bash
