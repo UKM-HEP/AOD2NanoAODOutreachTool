@@ -11,6 +11,7 @@ process.MessageLogger.categories.append("AOD2NanoAOD")
 process.MessageLogger.cerr.INFO = cms.untracked.PSet(
     limit=cms.untracked.int32(-1))
 process.options = cms.untracked.PSet(wantSummary=cms.untracked.bool(True))
+process.MessageLogger.cerr.FwkReport.reportEvery = 2000
 
 # Set the maximum number of events to be processed (-1 processes all events)
 process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(-1))
