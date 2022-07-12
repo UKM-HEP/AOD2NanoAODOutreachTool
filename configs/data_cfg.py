@@ -20,23 +20,23 @@ process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(-1))
 
 # Define files of dataset
 files = FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_10000_file_index.txt")
-files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_20000_file_index.txt"))
-files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_20001_file_index.txt"))
-files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_20002_file_index.txt"))
-files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_210000_file_index.txt"))
-files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_30000_file_index.txt"))
-files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_310000_file_index.txt"))
+#files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_20000_file_index.txt"))
+#files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_20001_file_index.txt"))
+#files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_20002_file_index.txt"))
+#files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_210000_file_index.txt"))
+#files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_30000_file_index.txt"))
+#files.extend(FileUtils.loadListFromFile("data/CMS_Run2012B_DoubleMuParked_AOD_22Jan2013-v1_310000_file_index.txt"))
 
 process.source = cms.Source(
     "PoolSource", fileNames=cms.untracked.vstring(*files))
 
 # Set global tag
 # We don't have set the global tag for the educational samples. This simplifies running the code since we don't have to access the database.
-#process.GlobalTag.connect = cms.string('sqlite_file:USEGLOBALTAG.db')
-#process.GlobalTag.globaltag = "USEGLOBALTAG::All"
+#process.GlobalTag.connect = cms.string('sqlite_file:XX__GLOBALTAG__XX.db')
+#process.GlobalTag.globaltag = "XX__GLOBALTAG__XX::All"
 
 # Apply JSON file with lumi mask (needs to be done after the process.source definition)
-goodJSON = "data/Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
+goodJSON = "XX__CERT__XX"
 myLumis = LumiList.LumiList(filename=goodJSON).getCMSSWString().split(",")
 process.source.lumisToProcess = CfgTypes.untracked(
     CfgTypes.VLuminosityBlockRange())

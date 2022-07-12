@@ -1,0 +1,1 @@
+root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2011/Summer11LegDR/DYJetsToLL_M-50_7TeV-madgraph-pythia6-tauola/AODSIM/PU_S13_START53_LV6-v1/010001/1A8E0DD3-F3CA-E311-BC51-001E67397B11.root

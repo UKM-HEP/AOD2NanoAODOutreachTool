@@ -1,0 +1,1 @@
+root://eospublic.cern.ch//eos/opendata/cms/Run2011A/DoubleElectron/AOD/12Oct2013-v1/20001/0E3B8E88-F93E-E311-82DD-003048FF9AC6.root

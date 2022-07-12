@@ -1,0 +1,1 @@
+root://eospublic.cern.ch//eos/opendata/cms/Run2012C/SingleMu/AOD/22Jan2013-v1/20001/0C4792CF-AA75-E211-8AA3-001EC9D7F687.root
