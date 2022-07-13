@@ -2,27 +2,24 @@
 
 Tool to convert AOD to NanoAOD file format for the purpose of education and outreach.
 
-## Description
-
-The tool can be used to read events from CMS AOD files and convert them to a reduced NanoAOD data format. Note that the tool is published for the documentation of the related datasets below and may need significant experiment-specific knowledge to be used.
-
-## Opendata Client
-
-```bash
-docker run -i -t --rm cernopendata/cernopendata-client --help
-```
-
-## Build module
-
-Note: the main branch is developed on top of 
+The branch is built on top of 
 
 ```bash
 https://github.com/cms-opendata-analyses/AOD2NanoAODOutreachTool -b v1.2 AOD2NanoAOD
 ```
 
+## Description
+
+The tool can be used to read events from CMS AOD files and convert them to a reduced NanoAOD data format. Note that the tool is published for the documentation of the related datasets below and may need significant experiment-specific knowledge to be used.
+
+
+## Setup for local testing
+
 ```bash
+cmssw-cc6
+cmsrel CMSSW_5_3_32
 cd CMSSW_5_3_32/src
-#cmsenv # skip! 
+cmsenv
 mkdir workspace
 cd workspace
 git clone https://github.com/UKM-HEP/AOD2NanoAODOutreachTool.git AOD2NanoAOD
@@ -30,34 +27,13 @@ cd AOD2NanoAOD
 scram b -j8
 ```
 
-For local development, checkout ```datasets```
-```bash
-git clone --recursive https://github.com/UKM-HEP/AOD2NanoAODOutreachTool.git AOD2NanoAOD
-```
-or
-```bash
-git clone https://github.com/UKM-HEP/AOD2NanoAODOutreachTool.git AOD2NanoAOD
-cd AOD2NanoAOD
-git submodule update --init --recursive
-```
-
 ## Test configuration locally
 
 ```bash
-cmsRun configs/simulation_cfg.py
-cmsRun configs/data_cfg.py
+cd AOD2NanoAOD/test
+./proc.sh
 ```
 
-## Example scripts for batch system submission
-
-You can use the following script to submit to any [HTCondor](https://research.cs.wisc.edu/htcondor/) batch system.
-
-```bash
-./submit_jobs.sh /path/to/job/directory
-```
-
-You can merge the job files with the following script.
-
-```bash
-./merge_jobs.py /path/to/job/outputs
-```
+## To-do
+- [ ] Identify the quality variables for tnp 7TeV
+- [ ] Identify the quality variables for tnp 8TeV
