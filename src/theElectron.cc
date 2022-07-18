@@ -36,3 +36,8 @@ void AOD2NanoAOD::fillElectron(edm::Handle<reco::GsfElectronCollection> &electro
   }
   
 }
+
+
+// https://twiki.cern.ch/twiki/bin/viewauth/CMS/VbtfEleID2011#Electron_VBTF_Selection_for_2011
+// https://twiki.cern.ch/twiki/bin/view/CMS/SimpleCutBasedEleID
+// https://twiki.cern.ch/twiki/bin/view/CMS/EgammaWorkingPointsv3
