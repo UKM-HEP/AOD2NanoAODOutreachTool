@@ -59,10 +59,24 @@
 #include "helper.h"
 
 const static std::vector<std::string> interestingTriggers = {
-  "HLT_IsoMu24_eta2p1",
-  "HLT_IsoMu24",
-  "HLT_IsoMu17_eta2p1_LooseIsoPFTau20",
+  "HLT_DoubleMu7",
+  "HLT_Mu13_Mu8",
+  "HLT_Mu17_Mu8",
+  "HLT_Mu17_Mu8",
+
+  "HLT_Ele17_CaloTrk_Ele8_CaloTrk",
+  "HLT_TripleEle10_CaloIdL_TrkIdVL",
+  "HLT_Ele17_CaloTrk_Ele8_CaloTrk",
+  "HLT_Ele15_Ele8_Ele5_CaloIdL_TrkIdVL",
+
+  "HLT_Mu8_Ele17_XXX",
+  "HLT_Mu17_Ele8_XXX",
+  "HLT_Mu17_TkMu8",
+  "HLT_Mu8_Ele17_CaloTrk",
+  "HLT_Mu17_Ele8_CaloTrk",
+
 };
+
 
 class AOD2NanoAOD : public edm::EDAnalyzer {
  public:

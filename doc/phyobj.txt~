@@ -1,0 +1,27 @@
+# Physics Objects
+
+# Reference
+Year            Energy		PAS		CADI
+2010-2011	7TeV		HIG-11-004	https://cms.cern.ch/iCMS/analysisadmin/cadilines?line=HIG-11-004&tp=an&id=532&ancode=HIG-11-004
+2011-2012	8 and 7TeV	HIG-12-016	https://cms.cern.ch/iCMS/analysisadmin/cadilines?line=HIG-12-016&tp=an&id=855&ancode=HIG-12-016
+
+# HLT
+## Muon trigger
+2011	HLT_DoubleMu7
+2011	HLT_Mu13_Mu8
+2011	HLT_Mu17_Mu8
+2012	HLT_Mu17_Mu8
+
+## Electron trigger
+2011	    HLT_Ele17_CaloTrk_Ele8_CaloTrk
+2011	    HLT_Ele17_CaloTrk_Ele8_CaloTrk
+2012	    HLT_Ele17_CaloTrk_Ele8_CaloTrk
+
+## Cross trigger
+2012	 HLT_Mu17_TkMu8
+2012	 HLT_Mu8_Ele17_CaloTrk
+2012	 HLT_Mu17_Ele8_CaloTrk
+
+## Luminosity
+2011	5.05 /fb
+2012	5.26 /fb
