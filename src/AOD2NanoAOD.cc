@@ -15,6 +15,9 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   for(size_t i = 0; i < interestingTriggers.size(); i++) {
     tree->Branch(interestingTriggers[i].c_str(), value_trig + i, (interestingTriggers[i] + "/O").c_str());
   }
+
+  // Xsec
+  tree->Branch("Xsec", &value_Xsec);
   
   // Vertices
   tree->Branch("PV_npvs", &value_ve_n, "PV_npvs/I");
@@ -56,6 +59,14 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("Electron_pfId", value_el_pfid, "Electron_pfId[nElectron]/O");
   tree->Branch("Electron_jetIdx", value_el_jetidx, "Electron_jetIdx[nElectron]/I");
   tree->Branch("Electron_genPartIdx", value_el_genpartidx, "Electron_genPartIdx[nElectron]/I");
+  tree->Branch("Electron_dEtaIn", value_el_dEtaIn, "Electron_dEtaIn[nElectron]/F");
+  tree->Branch("Electron_dPhiIn", value_el_dPhiIn, "Electron_dPhiIn[nElectron]/F");
+  tree->Branch("Electron_sigmaIEtaIEta", value_el_sigmaIEtaIEta, "Electron_sigmaIEtaIEta[nElectron]/F");
+  tree->Branch("Electron_HoE", value_el_HoE, "Electron_HoE[nElectron]/F");
+  tree->Branch("Electron_fbrem", value_el_fbrem, "Electron_fbrem[nElectron]/F");
+  tree->Branch("Electron_EoP_In", value_el_EoP_In, "Electron_EoP_In[nElectron]/F");
+  tree->Branch("Electron_IoEIoP_In", value_el_IoEIoP_In, "Electron_IoEIoP_In[nElectron]/F");
+  tree->Branch("Electron_Nmisshits", value_el_Nmisshits, "Electron_Nmisshits[nElectron]/F");
   
   // Taus
   tree->Branch("nTau", &value_tau_n, "nTau/i");
@@ -186,9 +197,12 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
 
   // Generator particles
   if (!isData){
+    
+    // Genpart
     Handle<GenParticleCollection> gens;
     iEvent.getByLabel(InputTag("genParticles"), gens);
     fillGenpart(gens);
+
   }
 
   tree->Fill();
@@ -198,5 +212,32 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
 void AOD2NanoAOD::beginJob() {}
 
 void AOD2NanoAOD::endJob() {}
+ 
+void AOD2NanoAOD::endRun(const edm::Run &run, const edm::EventSetup &)
+{
+
+  // https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideDataFormatGeneratorInterface#Using_other_products_AODSIM
+  edm::Handle<GenRunInfoProduct> genRunInfo;
+  run.getByLabel( "generator", genRunInfo );
+  value_Xsec = !isData ? genRunInfo->crossSection() : 1. ;
+ 
+  tree->Fill();
+}
+
+
+//void AOD2NanoAOD::endRun(edm::Run const&, edm::EventSetup const&)
+//{
+  // https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideDataFormatGeneratorInterface#Using_other_products_AODSIM
+  //GenRunInfoProduct_generator__SIM. → GenRunInfoProduct_generator__SIM.obj → InternalXSec → value_.
+  //if (!isData){
+  //  edm::Handle<GenRunInfoProduct> genRunInfo;
+  //  iRun.getByLabel( "generator", genRunInfo );
+  //  value_Xsec = genRunInfo.InternalXsec();
+  //}
+  //else{
+  //  value_Xsec = 1.;
+  //}
+//}
+
 
 DEFINE_FWK_MODULE(AOD2NanoAOD);

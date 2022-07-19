@@ -4,6 +4,7 @@
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 
 #include "FWCore/Framework/interface/Event.h"
+#include "FWCore/Framework/interface/Run.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
@@ -56,6 +57,10 @@
 #include "FWCore/Common/interface/TriggerResultsByName.h"
 #include "FWCore/ParameterSet/interface/Registry.h"
 
+#include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
+#include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
+#include "SimDataFormats/GeneratorProducts/interface/GenRunInfoProduct.h"
+
 #include "helper.h"
 
 const static std::vector<std::string> interestingTriggers = {
@@ -75,6 +80,8 @@ const static std::vector<std::string> interestingTriggers = {
   "HLT_Mu8_Ele17_CaloTrk",
   "HLT_Mu17_Ele8_CaloTrk",
 
+  "HLT_Dimuon10_Jpsi_Barrel",
+
 };
 
 
@@ -87,6 +94,8 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   virtual void beginJob();
   virtual void analyze(const edm::Event &, const edm::EventSetup &);
   virtual void endJob();
+  virtual void endRun(const edm::Run &, const edm::EventSetup &);
+
   virtual void fillTrigger(edm::Handle<edm::TriggerResults> &);
   virtual void fillVertex(edm::Handle<reco::VertexCollection> &);
   virtual void fillMuon(edm::Handle<reco::MuonCollection> &, edm::Handle<reco::VertexCollection> &);
@@ -106,6 +115,8 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   Int_t value_run;
   UInt_t value_lumi_block;
   ULong64_t value_event;
+
+  float value_Xsec;
 
   // Trigger
   const static int max_trig = 1000;
@@ -153,6 +164,14 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   bool value_el_pfid[max_el];
   int value_el_genpartidx[max_el];
   int value_el_jetidx[max_el];
+  float value_el_dEtaIn[max_el];
+  float value_el_dPhiIn[max_el];
+  float value_el_sigmaIEtaIEta[max_el];
+  float value_el_HoE[max_el];
+  float value_el_fbrem[max_el];
+  float value_el_EoP_In[max_el];
+  float value_el_IoEIoP_In[max_el];
+  int value_el_Nmisshits[max_el];
 
   // Taus
   const static int max_tau = 1000;
