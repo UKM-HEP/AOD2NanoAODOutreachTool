@@ -18,7 +18,10 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
 
   // Xsec
   tree->Branch("Xsec", &value_Xsec);
-  
+ 
+  // Generator weight
+  tree->Branch("evtWeight", &value_evtWeight);
+ 
   // Vertices
   tree->Branch("PV_npvs", &value_ve_n, "PV_npvs/I");
   tree->Branch("PV_x", &value_ve_x, "PV_x/F");
@@ -155,6 +158,13 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
   value_lumi_block = iEvent.luminosityBlock();
   value_event = iEvent.id().event();
 
+  // Event Weights
+  if(!isData){
+    edm::Handle<GenEventInfoProduct> genEvtInfo;
+    iEvent.getByLabel( "generator", genEvtInfo );
+    value_evtWeight = genEvtInfo->weight();
+  }
+  
   // Trigger results
   Handle<TriggerResults> trigger;
   iEvent.getByLabel(InputTag("TriggerResults", "", "HLT"), trigger);
@@ -196,13 +206,10 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
   fillJet(jets,btags);
 
   // Generator particles
-  if (!isData){
-    
-    // Genpart
+  if (!isData){    
     Handle<GenParticleCollection> gens;
     iEvent.getByLabel(InputTag("genParticles"), gens);
     fillGenpart(gens);
-
   }
 
   tree->Fill();

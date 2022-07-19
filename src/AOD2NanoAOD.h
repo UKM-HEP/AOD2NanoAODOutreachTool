@@ -66,20 +66,20 @@
 const static std::vector<std::string> interestingTriggers = {
   "HLT_DoubleMu7",
   "HLT_Mu13_Mu8",
-  "HLT_Mu17_Mu8",
-  "HLT_Mu17_Mu8",
+  "HLT_Mu17_Mu8"
 
   "HLT_Ele17_CaloTrk_Ele8_CaloTrk",
   "HLT_TripleEle10_CaloIdL_TrkIdVL",
   "HLT_Ele17_CaloTrk_Ele8_CaloTrk",
   "HLT_Ele15_Ele8_Ele5_CaloIdL_TrkIdVL",
 
-  "HLT_Mu8_Ele17_XXX",
-  "HLT_Mu17_Ele8_XXX",
-  "HLT_Mu17_TkMu8",
-  "HLT_Mu8_Ele17_CaloTrk",
-  "HLT_Mu17_Ele8_CaloTrk",
-
+  //may need to top up in the future
+  //"HLT_Mu8_Ele17_XXX",
+  //"HLT_Mu17_Ele8_XXX",
+  //"HLT_Mu17_TkMu8",
+  //"HLT_Mu8_Ele17_CaloTrk",
+  //"HLT_Mu17_Ele8_CaloTrk",
+  
   "HLT_Dimuon10_Jpsi_Barrel",
 
 };
@@ -116,7 +116,9 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   UInt_t value_lumi_block;
   ULong64_t value_event;
 
-  float value_Xsec;
+  // xsec
+  double value_Xsec;
+  double value_evtWeight;
 
   // Trigger
   const static int max_trig = 1000;
