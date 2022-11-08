@@ -25,8 +25,8 @@ process.source = cms.Source(
 
 # Set global tag
 # We don't have set the global tag for the educational samples. This simplifies running the code since we don't have to access the database.
-#process.GlobalTag.connect = cms.string('sqlite_file:XX_GLOBALTAG_XX.db')
-#process.GlobalTag.globaltag = "XX_GLOBALTAG_XX::All"
+#process.GlobalTag.connect = cms.string('sqlite_file:USEGLOBALTAG.db')
+#process.GlobalTag.globaltag = "USEGLOBALTAG::All"
 
 # Number of events to be skipped (0 by default)
 process.source.skipEvents = cms.untracked.uint32(0)
