@@ -32,11 +32,11 @@ process.source = cms.Source(
 
 # Set global tag
 # We don't have set the global tag for the educational samples. This simplifies running the code since we don't have to access the database.
-#process.GlobalTag.connect = cms.string('sqlite_file:XX__GLOBALTAG__XX.db')
-#process.GlobalTag.globaltag = "XX__GLOBALTAG__XX::All"
+#process.GlobalTag.connect = cms.string('sqlite_file:USEGLOBALTAG.db')
+#process.GlobalTag.globaltag = "USEGLOBALTAG::All"
 
 # Apply JSON file with lumi mask (needs to be done after the process.source definition)
-goodJSON = "XX__CERT__XX"
+goodJSON = "USECERTIFICATEHERE"
 myLumis = LumiList.LumiList(filename=goodJSON).getCMSSWString().split(",")
 process.source.lumisToProcess = CfgTypes.untracked(
     CfgTypes.VLuminosityBlockRange())
