@@ -1,0 +1,14 @@
+HLT_DoubleMu11_Acoplanarity03_v3
+HLT_DoubleMu4_Acoplanarity03_v3
+HLT_DoubleMu5_IsoMu5_v18
+HLT_L2DoubleMu23_NoVertex_2Cha_Angle2p5_v2
+HLT_L2DoubleMu23_NoVertex_v10
+HLT_L2DoubleMu38_NoVertex_2Cha_Angle2p5_v2
+HLT_Mu13_Mu8_v18
+HLT_Mu17_Mu8_v18
+HLT_Mu17_TkMu8_v11
+HLT_Mu17_v3
+HLT_Mu22_TkMu22_v6
+HLT_Mu22_TkMu8_v6
+HLT_Mu8_v16
+HLT_TripleMu5_v17

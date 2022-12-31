@@ -85,7 +85,7 @@ if [ ! -z "$GT" ]; then
     sed -i -e 's,#process.GlobalTag.globaltag,process.GlobalTag.globaltag,g' $CONFIG_COPY
 
     #http://opendata.cern.ch/docs/cms-guide-for-condition-database
-    sed -i -e 's,XX__GLOBALTAG__XX,'${GT}',g' $CONFIG_COPY
+    sed -i -e 's,USEGLOBALTAG,'${GT}',g' $CONFIG_COPY
 
     ln -sf /cvmfs/cms-opendata-conddb.cern.ch/${GT} ${GT}
     ln -sf /cvmfs/cms-opendata-conddb.cern.ch/${GT}.db ${GT}.db
@@ -111,7 +111,7 @@ if [[ ${TEXT_FILES} == *"Run"* ]]; then
     else
 	GJSON="Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
     fi
-    sed -i -e 's,XX__CERT__XX,'${CMSSW_BASE}'/src/workspace/AOD2NanoAOD/data/'${GJSON}',g' $CONFIG_COPY
+    sed -i -e 's,USECERTIFICATEHERE,'${CMSSW_BASE}'/src/workspace/AOD2NanoAOD/data/'${GJSON}',g' $CONFIG_COPY
 fi
 
 # Modify config to write output directly to EOS

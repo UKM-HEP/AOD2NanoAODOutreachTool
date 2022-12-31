@@ -1,7 +1,8 @@
 #include "AOD2NanoAOD.h"
 
 AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
-  isData(iConfig.getParameter<bool>("isData"))
+  isData(iConfig.getParameter<bool>("isData")),
+  HLTlist(iConfig.getParameter<std::string>("HLTlist"))
 {
   
   tree = fs->make<TTree>("Events", "Events");
@@ -10,6 +11,13 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("run", &value_run);
   tree->Branch("luminosityBlock", &value_lumi_block);
   tree->Branch("event", &value_event);
+
+  std::ifstream file(HLTlist);
+  std::string str;
+  //std::vector<std::string> vfout;
+  while (std::getline(file, str)) { if(str.find('#')==std::string::npos) interestingTriggers.push_back(str); }
+
+  //std::vector<std::string> interestingTriggers = makeTheList("/afs/cern.ch/work/s/shoh/analysis/opendata/CMSSW_5_3_32/src/workspace/AOD2NanoAOD/data/HLT/HLT_Lepton_8TeV.txt");
   
   // Trigger
   for(size_t i = 0; i < interestingTriggers.size(); i++) {

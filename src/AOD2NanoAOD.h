@@ -1,5 +1,13 @@
 #include <memory>
 
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <stdlib.h>
+#include <string>
+
+#include "math.h"
+
 #include "FWCore/Framework/interface/EDAnalyzer.h"
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 
@@ -15,10 +23,6 @@
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 #include "FWCore/ServiceRegistry/interface/Service.h"
-#include "math.h"
-
-#include "TFile.h"
-#include "TTree.h"
 
 #include "DataFormats/TrackReco/interface/HitPattern.h"
 #include "DataFormats/TrackReco/interface/Track.h"
@@ -61,8 +65,12 @@
 #include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
 #include "SimDataFormats/GeneratorProducts/interface/GenRunInfoProduct.h"
 
+#include "TFile.h"
+#include "TTree.h"
+
 #include "helper.h"
 
+/*
 const static std::vector<std::string> interestingTriggers = {
   "HLT_DoubleMu7",
   "HLT_Mu13_Mu8",
@@ -83,7 +91,7 @@ const static std::vector<std::string> interestingTriggers = {
   "HLT_Dimuon10_Jpsi_Barrel",
 
 };
-
+*/
 
 class AOD2NanoAOD : public edm::EDAnalyzer {
  public:
@@ -108,6 +116,7 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
 
   bool providesGoodLumisection(const edm::Event &iEvent);
   bool isData;
+  std::string HLTlist;
 
   TTree *tree;
 
@@ -123,6 +132,7 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   // Trigger
   const static int max_trig = 1000;
   bool value_trig[max_trig];
+  std::vector<std::string> interestingTriggers;
 
   // Vertices
   int value_ve_n;
