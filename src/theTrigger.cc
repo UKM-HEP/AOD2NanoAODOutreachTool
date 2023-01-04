@@ -19,7 +19,7 @@ void AOD2NanoAOD::fillTrigger(edm::Handle<edm::TriggerResults> &trigger){
     for (size_t j = 0; j < interestingTriggers.size(); j++) {
       const auto interest = interestingTriggers[j];
       if (name.find(interest) == 0) {
-        const auto substr = name.substr(interest.length(), 2);
+        const auto substr = name.substr(interest.length()-3, 2);
         if (substr.compare("_v") == 0) {
           const auto status = triggerByName.state(name);
           if (status == 1) {
