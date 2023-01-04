@@ -114,6 +114,15 @@ if [[ ${TEXT_FILES} == *"Run"* ]]; then
     sed -i -e 's,USECERTIFICATEHERE,'${CMSSW_BASE}'/src/workspace/AOD2NanoAOD/data/'${GJSON}',g' $CONFIG_COPY
 fi
 
+# Modify CMSSW config to read hltlist
+if [[ ${TEXT_FILES} == *"2011"* ]]; then
+        HLTLIST="HLT_Lepton_7TeV.txt"
+    else
+        HLTLIST="HLT_Lepton_8TeV.txt"
+fi
+sed -i -e 's,USEHLTLISTHERE,'${CMSSW_BASE}'/src/workspace/AOD2NanoAOD/data/HLT/'${HLTLIST}',g' $CONFIG_COPY
+
+
 # Modify config to write output directly to EOS
 OUTFILE=${OUTDIR}/${PROCESS}.root
 sed -i -e 's,output.root,'${OUTFILE}',g' $CONFIG_COPY

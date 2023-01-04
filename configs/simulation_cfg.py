@@ -34,7 +34,7 @@ process.source.skipEvents = cms.untracked.uint32(0)
 # Register fileservice for output file
 process.aod2nanoaod = cms.EDAnalyzer("AOD2NanoAOD", 
                                      isData = cms.bool(False),
-                                     HLTlist = cms.string("/afs/cern.ch/work/s/shoh/analysis/opendata/CMSSW_5_3_32/src/workspace/AOD2NanoAOD/data/HLT/HLT_Lepton_8TeV.txt")
+                                     HLTlist = cms.string("USEHLTLISTHERE")
 )
 process.TFileService = cms.Service(
     "TFileService", fileName=cms.string("output.root"))
