@@ -341,11 +341,3 @@ HLT_DTErrors_v1
 HLT_L1ETM30_v2
 HLT_L1DoubleJet36Central_v2
 HLT_L1MultiJet_v2
-AlCa_EcalPi0_v6
-AlCa_EcalEta_v5
-AlCa_EcalPhiSym_v5
-AlCa_RPCMuonNoTriggers_v4
-AlCa_RPCMuonNoHits_v4
-AlCa_RPCMuonNormalisation_v4
-DQM_FEDIntegrity_v4
-HLTriggerFinalPath
