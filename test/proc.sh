@@ -19,7 +19,7 @@ checkExit() {
 #checkExit 1
 
 echo "TEST 2 : Running 7TeV on MC"
-./run.sh CMS_MonteCarlo2011_Summer11LegDR_DYJetsToLL_M-50_7TeV-madgraph-pythia6-tauola_AODSIM_PU_S13_START53_LV6-v1_test.txt 200 2011 START53_LV6A1
+./run.sh CMS_MonteCarlo2011_Summer11LegDR_DYJetsToLL_M-50_7TeV-madgraph-pythia6-tauola_AODSIM_PU_S13_START53_LV6-v1_test.txt 1000 2011 START53_LV6A1
 checkExit 2
 
 #echo "TEST 3 : Running 8TeV on DATA"
@@ -27,7 +27,7 @@ checkExit 2
 #checkExit 3
 
 #echo "TEST 4 : Running 8TeV on MC"
-#./run.sh CMS_MonteCarlo2012_ZZTo4e_8TeV-powheg-pythia6_test.txt 200 2012 START53_V27
+#./run.sh CMS_MonteCarlo2012_ZZTo4e_8TeV-powheg-pythia6_test.txt 1000 2012 START53_V27
 #checkExit 4
 
 

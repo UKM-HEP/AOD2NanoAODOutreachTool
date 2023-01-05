@@ -28,8 +28,10 @@
 #include "DataFormats/TrackReco/interface/Track.h"
 #include "DataFormats/TrackReco/interface/TrackFwd.h"
 
-#include "DataFormats/GsfTrackReco/interface/GsfTrack.h"
 #include "DataFormats/EgammaCandidates/interface/GsfElectron.h"
+#include "DataFormats/EgammaCandidates/interface/GsfElectronFwd.h"
+#include "DataFormats/GsfTrackReco/interface/GsfTrack.h"
+#include "RecoEgamma/EgammaTools/interface/ConversionTools.h"
 
 #include "DataFormats/MuonReco/interface/Muon.h"
 #include "DataFormats/MuonReco/interface/MuonFwd.h"
@@ -107,12 +109,16 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   virtual void fillTrigger(edm::Handle<edm::TriggerResults> &);
   virtual void fillVertex(edm::Handle<reco::VertexCollection> &);
   virtual void fillMuon(edm::Handle<reco::MuonCollection> &, edm::Handle<reco::VertexCollection> &);
-  virtual void fillElectron(edm::Handle<reco::GsfElectronCollection> &, edm::Handle<reco::VertexCollection> &);
+  //virtual void fillElectron(edm::Handle<reco::GsfElectronCollection> &, edm::Handle<reco::VertexCollection> &);
+  virtual void fillElectron(edm::Handle<reco::GsfElectronCollection> &, edm::Handle<reco::VertexCollection> &, 
+			    edm::Handle<reco::ConversionCollection> &, edm::Handle<reco::BeamSpot> &, edm::Handle<double> &);
   virtual void fillTau(const edm::Event &iEvent);
   virtual void fillPhoton(edm::Handle<reco::PhotonCollection> &);
   virtual void fillMET(edm::Handle<reco::PFMETCollection> &);
   virtual void fillJet(edm::Handle<reco::CaloJetCollection> &, edm::Handle<reco::JetTagCollection> &);
   virtual void fillGenpart(edm::Handle<reco::GenParticleCollection> &);
+
+  virtual float effectiveArea0p3cone(float eta);
 
   bool providesGoodLumisection(const edm::Event &iEvent);
   bool isData;
@@ -152,6 +158,7 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   float value_mu_pfreliso04all[max_mu];
   bool value_mu_tightid[max_mu];
   bool value_mu_softid[max_mu];
+  bool value_mu_looseid[max_mu];
   float value_mu_dxy[max_mu];
   float value_mu_dxyErr[max_mu];
   float value_mu_dz[max_mu];
@@ -172,7 +179,7 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   float value_el_dxyErr[max_el];
   float value_el_dz[max_el];
   float value_el_dzErr[max_el];
-  bool value_el_cutbasedid[max_el];
+  //bool value_el_cutbasedid[max_el];
   bool value_el_pfid[max_el];
   int value_el_genpartidx[max_el];
   int value_el_jetidx[max_el];
@@ -184,6 +191,8 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   float value_el_EoP_In[max_el];
   float value_el_IoEIoP_In[max_el];
   int value_el_Nmisshits[max_el];
+  bool value_el_vetoConv[max_el];
+  int value_el_cutBasedId[max_el];
 
   // Taus
   const static int max_tau = 1000;

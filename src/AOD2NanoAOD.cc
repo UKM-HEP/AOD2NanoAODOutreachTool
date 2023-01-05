@@ -47,6 +47,7 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("Muon_pfRelIso04_all", value_mu_pfreliso04all, "Muon_pfRelIso04_all[nMuon]/F");
   tree->Branch("Muon_tightId", value_mu_tightid, "Muon_tightId[nMuon]/O");
   tree->Branch("Muon_softId", value_mu_softid, "Muon_softId[nMuon]/O");
+  tree->Branch("Muon_looseId", value_mu_looseid, "Muon_looseId[nMuon]/O");
   tree->Branch("Muon_dxy", value_mu_dxy, "Muon_dxy[nMuon]/F");
   tree->Branch("Muon_dxyErr", value_mu_dxyErr, "Muon_dxyErr[nMuon]/F");
   tree->Branch("Muon_dz", value_mu_dz, "Muon_dz[nMuon]/F");
@@ -66,7 +67,7 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("Electron_dxyErr", value_el_dxyErr, "Electron_dxyErr[nElectron]/F");
   tree->Branch("Electron_dz", value_el_dz, "Electron_dz[nElectron]/F");
   tree->Branch("Electron_dzErr", value_el_dzErr, "Electron_dzErr[nElectron]/F");
-  tree->Branch("Electron_cutBasedId", value_el_cutbasedid, "Electron_cutBasedId[nElectron]/O");
+  //tree->Branch("Electron_cutBasedId", value_el_cutbasedid, "Electron_cutBasedId[nElectron]/O");
   tree->Branch("Electron_pfId", value_el_pfid, "Electron_pfId[nElectron]/O");
   tree->Branch("Electron_jetIdx", value_el_jetidx, "Electron_jetIdx[nElectron]/I");
   tree->Branch("Electron_genPartIdx", value_el_genpartidx, "Electron_genPartIdx[nElectron]/I");
@@ -77,7 +78,9 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("Electron_fbrem", value_el_fbrem, "Electron_fbrem[nElectron]/F");
   tree->Branch("Electron_EoP_In", value_el_EoP_In, "Electron_EoP_In[nElectron]/F");
   tree->Branch("Electron_IoEIoP_In", value_el_IoEIoP_In, "Electron_IoEIoP_In[nElectron]/F");
-  tree->Branch("Electron_Nmisshits", value_el_Nmisshits, "Electron_Nmisshits[nElectron]/F");
+  tree->Branch("Electron_Nmisshits", value_el_Nmisshits, "Electron_Nmisshits[nElectron]/I");
+  tree->Branch("Electron_vetoConv", value_el_vetoConv, "Electron_vetoConv[nElectron]/O");
+  tree->Branch("Electron_cutBasedId", value_el_cutBasedId, "Electron_cutBasedId[nElectron]/I");
   
   // Taus
   tree->Branch("nTau", &value_tau_n, "nTau/i");
@@ -146,6 +149,19 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
 
 AOD2NanoAOD::~AOD2NanoAOD() {}
 
+// member functions
+float
+AOD2NanoAOD::effectiveArea0p3cone(float eta)
+{
+  if(fabs(eta) < 1.0) return 0.13;
+  else if(fabs(eta) < 1.479) return 0.14;
+  else if(fabs(eta) < 2.0) return 0.07;
+  else if(fabs(eta) < 2.2) return 0.09;
+  else if(fabs(eta) < 2.3) return 0.11;
+  else if(fabs(eta) < 2.4) return 0.11;
+  else return 0.14;
+}
+
 void AOD2NanoAOD::analyze(const edm::Event &iEvent,
                           const edm::EventSetup &iSetup) {
 
@@ -190,8 +206,14 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
 
   // Electrons
   Handle<GsfElectronCollection> electrons;
+  Handle<ConversionCollection> conversions;
+  Handle<BeamSpot> bsHandle;
+  Handle<double> rhoHandle;
   iEvent.getByLabel(InputTag("gsfElectrons"), electrons);
-  fillElectron(electrons,vertices);
+  iEvent.getByLabel("allConversions", conversions);
+  iEvent.getByLabel("offlineBeamSpot", bsHandle);
+  iEvent.getByLabel(InputTag("fixedGridRhoAll"), rhoHandle);
+  fillElectron(electrons,vertices, conversions, bsHandle, rhoHandle);
 
   // Taus
   fillTau(iEvent);
