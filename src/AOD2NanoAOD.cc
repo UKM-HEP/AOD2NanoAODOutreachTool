@@ -104,6 +104,7 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("Electron_vetoConv", value_el_vetoConv, "Electron_vetoConv[nElectron]/O");
   tree->Branch("Electron_cutBasedId", value_el_cutBasedId, "Electron_cutBasedId[nElectron]/I");
   
+  /*
   // Taus
   tree->Branch("nTau", &value_tau_n, "nTau/i");
   tree->Branch("Tau_pt", value_tau_pt, "Tau_pt[nTau]/F");
@@ -147,6 +148,7 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("MET_CovXX", &value_met_covxx, "MET_CovXX/F");
   tree->Branch("MET_CovXY", &value_met_covxy, "MET_CovXY/F");
   tree->Branch("MET_CovYY", &value_met_covyy, "MET_CovYY/F");
+  */
 
   // Jets
   tree->Branch("nJet", &value_jet_n, "nJet/i");
@@ -242,6 +244,7 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
   iEvent.getByLabel(InputTag("fixedGridRhoAll"), rhoHandle);
   fillElectron(electrons,vertices, conversions, bsHandle, rhoHandle);
 
+  /*
   // Taus
   fillTau(iEvent);
 
@@ -254,6 +257,7 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
   Handle<PFMETCollection> met;
   iEvent.getByLabel(InputTag("pfMet"), met);
   fillMET(met);
+  */
 
   // Jets
   Handle<CaloJetCollection> jets;
