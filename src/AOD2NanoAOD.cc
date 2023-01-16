@@ -14,15 +14,37 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
 
   std::ifstream file(HLTlist);
   std::string str;
-  //std::vector<std::string> vfout;
-  while (std::getline(file, str)) { if(str.find('#')==std::string::npos) interestingTriggers.push_back(str); }
-
-  //std::vector<std::string> interestingTriggers = makeTheList("/afs/cern.ch/work/s/shoh/analysis/opendata/CMSSW_5_3_32/src/workspace/AOD2NanoAOD/data/HLT/HLT_Lepton_8TeV.txt");
   
   // Trigger
-  for(size_t i = 0; i < interestingTriggers.size(); i++) {
+  while (std::getline(file, str)) { if(str.find('#')==std::string::npos) interestingTriggers.push_back(str); }
+  for(size_t i = 0; i < interestingTriggers.size(); i++) {    
     tree->Branch(interestingTriggers[i].c_str(), value_trig + i, (interestingTriggers[i] + "/O").c_str());
   }
+
+  // Trigger Object
+  // TrigObj electron
+  tree->Branch("nTrigObj_ele", &value_trigobj_ele_n, "nTrigObj_ele/I");
+  tree->Branch("TrigObj_ele_Id", &value_trigobj_ele_id, "TrigObj_ele_id[nTrigObj_ele]/I");
+  tree->Branch("TrigObj_ele_pt", &value_trigobj_ele_pt, "TrigObj_ele_pt[nTrigObj_ele]/F");
+  tree->Branch("TrigObj_ele_eta", &value_trigobj_ele_eta, "TrigObj_ele_eta[nTrigObj_ele]/F");
+  tree->Branch("TrigObj_ele_phi", &value_trigobj_ele_phi, "TrigObj_ele_phi[nTrigObj_ele]/F");
+  tree->Branch("TrigObj_ele_mass", &value_trigobj_ele_mass, "TrigObj_ele_mass[nTrigObj_ele]/F");
+  
+  // TrigObj muon
+  tree->Branch("nTrigObj_isou", &value_trigobj_isou_n, "nTrigObj_isou/I");
+  tree->Branch("TrigObj_isou_Id", &value_trigobj_isou_id, "TrigObj_isou_id[nTrigObj_isou]/I");
+  tree->Branch("TrigObj_isou_pt", &value_trigobj_isou_pt, "TrigObj_isou_pt[nTrigObj_isou]/F");
+  tree->Branch("TrigObj_isou_eta", &value_trigobj_isou_eta, "TrigObj_isou_eta[nTrigObj_isou]/F");
+  tree->Branch("TrigObj_isou_phi", &value_trigobj_isou_phi, "TrigObj_isou_phi[nTrigObj_isou]/F");
+  tree->Branch("TrigObj_isou_mass", &value_trigobj_isou_mass, "TrigObj_isou_mass[nTrigObj_isou]/F");
+
+  // TrigObj J\Psi muon
+  tree->Branch("nTrigObj_jpsiu", &value_trigobj_jpsiu_n, "nTrigObj_jpsiu/I");
+  tree->Branch("TrigObj_jpsiu_Id", &value_trigobj_jpsiu_id, "TrigObj_jpsiu_id[nTrigObj_jpsiu]/I");
+  tree->Branch("TrigObj_jpsiu_pt", &value_trigobj_jpsiu_pt, "TrigObj_jpsiu_pt[nTrigObj_jpsiu]/F");
+  tree->Branch("TrigObj_jpsiu_eta", &value_trigobj_jpsiu_eta, "TrigObj_jpsiu_eta[nTrigObj_jpsiu]/F");
+  tree->Branch("TrigObj_jpsiu_phi", &value_trigobj_jpsiu_phi, "TrigObj_jpsiu_phi[nTrigObj_jpsiu]/F");
+  tree->Branch("TrigObj_jpsiu_mass", &value_trigobj_jpsiu_mass, "TrigObj_jpsiu_mass[nTrigObj_jpsiu]/F");
 
   // Xsec
   tree->Branch("Xsec", &value_Xsec);
@@ -191,8 +213,13 @@ void AOD2NanoAOD::analyze(const edm::Event &iEvent,
   
   // Trigger results
   Handle<TriggerResults> trigger;
-  iEvent.getByLabel(InputTag("TriggerResults", "", "HLT"), trigger);
+  iEvent.getByLabel(InputTag("TriggerResults","","HLT"), trigger);
   fillTrigger(trigger);
+
+  // Trigger objects
+  Handle<trigger::TriggerEvent> trigEvent;
+  iEvent.getByLabel(InputTag("hltTriggerSummaryAOD","","HLT"), trigEvent);
+  fillTriggerObj(trigEvent);
 
   // Vertex
   Handle<VertexCollection> vertices;

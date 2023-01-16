@@ -62,6 +62,8 @@
 #include "FWCore/Common/interface/TriggerNames.h"
 #include "FWCore/Common/interface/TriggerResultsByName.h"
 #include "FWCore/ParameterSet/interface/Registry.h"
+#include "DataFormats/HLTReco/interface/TriggerObject.h"
+#include "DataFormats/HLTReco/interface/TriggerEvent.h"
 
 #include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
 #include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
@@ -106,6 +108,7 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   virtual void endJob();
   virtual void endRun(const edm::Run &, const edm::EventSetup &);
 
+  virtual void fillTriggerObj(edm::Handle<trigger::TriggerEvent> &);
   virtual void fillTrigger(edm::Handle<edm::TriggerResults> &);
   virtual void fillVertex(edm::Handle<reco::VertexCollection> &);
   virtual void fillMuon(edm::Handle<reco::MuonCollection> &, edm::Handle<reco::VertexCollection> &);
@@ -139,6 +142,30 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   const static int max_trig = 1000;
   bool value_trig[max_trig];
   std::vector<std::string> interestingTriggers;
+
+  // Trigger Object
+  // ele filter trigger object
+  const static int max_trigobj = 1000;
+  int value_trigobj_ele_n;
+  float value_trigobj_ele_id[max_trigobj];
+  float value_trigobj_ele_pt[max_trigobj];
+  float value_trigobj_ele_eta[max_trigobj];
+  float value_trigobj_ele_phi[max_trigobj];
+  float value_trigobj_ele_mass[max_trigobj];
+
+  int value_trigobj_isou_n;
+  float value_trigobj_isou_id[max_trigobj];
+  float value_trigobj_isou_pt[max_trigobj];
+  float value_trigobj_isou_eta[max_trigobj];
+  float value_trigobj_isou_phi[max_trigobj];
+  float value_trigobj_isou_mass[max_trigobj];
+
+  int value_trigobj_jpsiu_n;
+  float value_trigobj_jpsiu_id[max_trigobj];
+  float value_trigobj_jpsiu_pt[max_trigobj];
+  float value_trigobj_jpsiu_eta[max_trigobj];
+  float value_trigobj_jpsiu_phi[max_trigobj];
+  float value_trigobj_jpsiu_mass[max_trigobj];
 
   // Vertices
   int value_ve_n;
