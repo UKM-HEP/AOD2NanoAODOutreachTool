@@ -1,0 +1,1 @@
+root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2011/Summer11LegDR/JPsiToMuMu_2MuPEtaFilter_7TeV-pythia6-evtgen-v2/AODSIM/PU_S13_START53_LV6-v1/00000/02CEAD9F-CD33-E411-B75F-003048D3CDE0.root
