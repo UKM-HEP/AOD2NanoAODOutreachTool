@@ -153,19 +153,33 @@ class AOD2NanoAOD : public edm::EDAnalyzer {
   float value_trigobj_ele_phi[max_trigobj];
   float value_trigobj_ele_mass[max_trigobj];
 
-  int value_trigobj_isou_n;
-  float value_trigobj_isou_id[max_trigobj];
-  float value_trigobj_isou_pt[max_trigobj];
-  float value_trigobj_isou_eta[max_trigobj];
-  float value_trigobj_isou_phi[max_trigobj];
-  float value_trigobj_isou_mass[max_trigobj];
+  int value_trigobj_isou_runa_n;
+  float value_trigobj_isou_runa_id[max_trigobj];
+  float value_trigobj_isou_runa_pt[max_trigobj];
+  float value_trigobj_isou_runa_eta[max_trigobj];
+  float value_trigobj_isou_runa_phi[max_trigobj];
+  float value_trigobj_isou_runa_mass[max_trigobj];
 
-  int value_trigobj_jpsiu_n;
-  float value_trigobj_jpsiu_id[max_trigobj];
-  float value_trigobj_jpsiu_pt[max_trigobj];
-  float value_trigobj_jpsiu_eta[max_trigobj];
-  float value_trigobj_jpsiu_phi[max_trigobj];
-  float value_trigobj_jpsiu_mass[max_trigobj];
+  int value_trigobj_isou_runb_n;
+  float value_trigobj_isou_runb_id[max_trigobj];
+  float value_trigobj_isou_runb_pt[max_trigobj];
+  float value_trigobj_isou_runb_eta[max_trigobj];
+  float value_trigobj_isou_runb_phi[max_trigobj];
+  float value_trigobj_isou_runb_mass[max_trigobj];
+
+  int value_trigobj_jpsiu_runa_n;
+  float value_trigobj_jpsiu_runa_id[max_trigobj];
+  float value_trigobj_jpsiu_runa_pt[max_trigobj];
+  float value_trigobj_jpsiu_runa_eta[max_trigobj];
+  float value_trigobj_jpsiu_runa_phi[max_trigobj];
+  float value_trigobj_jpsiu_runa_mass[max_trigobj];
+
+  int value_trigobj_jpsiu_runb_n;
+  float value_trigobj_jpsiu_runb_id[max_trigobj];
+  float value_trigobj_jpsiu_runb_pt[max_trigobj];
+  float value_trigobj_jpsiu_runb_eta[max_trigobj];
+  float value_trigobj_jpsiu_runb_phi[max_trigobj];
+  float value_trigobj_jpsiu_runb_mass[max_trigobj];
 
   // Vertices
   int value_ve_n;

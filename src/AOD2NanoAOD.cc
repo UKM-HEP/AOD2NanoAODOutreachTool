@@ -30,21 +30,37 @@ AOD2NanoAOD::AOD2NanoAOD(const edm::ParameterSet& iConfig):
   tree->Branch("TrigObj_ele_phi", &value_trigobj_ele_phi, "TrigObj_ele_phi[nTrigObj_ele]/F");
   tree->Branch("TrigObj_ele_mass", &value_trigobj_ele_mass, "TrigObj_ele_mass[nTrigObj_ele]/F");
   
-  // TrigObj muon
-  tree->Branch("nTrigObj_isou", &value_trigobj_isou_n, "nTrigObj_isou/I");
-  tree->Branch("TrigObj_isou_Id", &value_trigobj_isou_id, "TrigObj_isou_id[nTrigObj_isou]/I");
-  tree->Branch("TrigObj_isou_pt", &value_trigobj_isou_pt, "TrigObj_isou_pt[nTrigObj_isou]/F");
-  tree->Branch("TrigObj_isou_eta", &value_trigobj_isou_eta, "TrigObj_isou_eta[nTrigObj_isou]/F");
-  tree->Branch("TrigObj_isou_phi", &value_trigobj_isou_phi, "TrigObj_isou_phi[nTrigObj_isou]/F");
-  tree->Branch("TrigObj_isou_mass", &value_trigobj_isou_mass, "TrigObj_isou_mass[nTrigObj_isou]/F");
+  // TrigObj muon RunA
+  tree->Branch("nTrigObj_isou_runa", &value_trigobj_isou_runa_n, "nTrigObj_isou_runa/I");
+  tree->Branch("TrigObj_isou_runa_Id", &value_trigobj_isou_runa_id, "TrigObj_isou_runa_id[nTrigObj_isou_runa]/I");
+  tree->Branch("TrigObj_isou_runa_pt", &value_trigobj_isou_runa_pt, "TrigObj_isou_runa_pt[nTrigObj_isou_runa]/F");
+  tree->Branch("TrigObj_isou_runa_eta", &value_trigobj_isou_runa_eta, "TrigObj_isou_runa_eta[nTrigObj_isou_runa]/F");
+  tree->Branch("TrigObj_isou_runa_phi", &value_trigobj_isou_runa_phi, "TrigObj_isou_runa_phi[nTrigObj_isou_runa]/F");
+  tree->Branch("TrigObj_isou_runa_mass", &value_trigobj_isou_runa_mass, "TrigObj_isou_runa_mass[nTrigObj_isou_runa]/F");
 
-  // TrigObj J\Psi muon
-  tree->Branch("nTrigObj_jpsiu", &value_trigobj_jpsiu_n, "nTrigObj_jpsiu/I");
-  tree->Branch("TrigObj_jpsiu_Id", &value_trigobj_jpsiu_id, "TrigObj_jpsiu_id[nTrigObj_jpsiu]/I");
-  tree->Branch("TrigObj_jpsiu_pt", &value_trigobj_jpsiu_pt, "TrigObj_jpsiu_pt[nTrigObj_jpsiu]/F");
-  tree->Branch("TrigObj_jpsiu_eta", &value_trigobj_jpsiu_eta, "TrigObj_jpsiu_eta[nTrigObj_jpsiu]/F");
-  tree->Branch("TrigObj_jpsiu_phi", &value_trigobj_jpsiu_phi, "TrigObj_jpsiu_phi[nTrigObj_jpsiu]/F");
-  tree->Branch("TrigObj_jpsiu_mass", &value_trigobj_jpsiu_mass, "TrigObj_jpsiu_mass[nTrigObj_jpsiu]/F");
+  // TrigObj muon RunB
+  tree->Branch("nTrigObj_isou_runb", &value_trigobj_isou_runb_n, "nTrigObj_isou_runb/I");
+  tree->Branch("TrigObj_isou_runb_Id", &value_trigobj_isou_runb_id, "TrigObj_isou_runb_id[nTrigObj_isou_runb]/I");
+  tree->Branch("TrigObj_isou_runb_pt", &value_trigobj_isou_runb_pt, "TrigObj_isou_runb_pt[nTrigObj_isou_runb]/F");
+  tree->Branch("TrigObj_isou_runb_eta", &value_trigobj_isou_runb_eta, "TrigObj_isou_runb_eta[nTrigObj_isou_runb]/F");
+  tree->Branch("TrigObj_isou_runb_phi", &value_trigobj_isou_runb_phi, "TrigObj_isou_runb_phi[nTrigObj_isou_runb]/F");
+  tree->Branch("TrigObj_isou_runb_mass", &value_trigobj_isou_runb_mass, "TrigObj_isou_runb_mass[nTrigObj_isou_runb]/F");
+
+  // TrigObj J\Psi muon RunA
+  tree->Branch("nTrigObj_jpsiu_runa", &value_trigobj_jpsiu_runa_n, "nTrigObj_jpsiu_runa/I");
+  tree->Branch("TrigObj_jpsiu_runa_Id", &value_trigobj_jpsiu_runa_id, "TrigObj_jpsiu_runa_id[nTrigObj_jpsiu_runa]/I");
+  tree->Branch("TrigObj_jpsiu_runa_pt", &value_trigobj_jpsiu_runa_pt, "TrigObj_jpsiu_runa_pt[nTrigObj_jpsiu_runa]/F");
+  tree->Branch("TrigObj_jpsiu_runa_eta", &value_trigobj_jpsiu_runa_eta, "TrigObj_jpsiu_runa_eta[nTrigObj_jpsiu_runa]/F");
+  tree->Branch("TrigObj_jpsiu_runa_phi", &value_trigobj_jpsiu_runa_phi, "TrigObj_jpsiu_runa_phi[nTrigObj_jpsiu_runa]/F");
+  tree->Branch("TrigObj_jpsiu_runa_mass", &value_trigobj_jpsiu_runa_mass, "TrigObj_jpsiu_runa_mass[nTrigObj_jpsiu_runa]/F");
+
+  // TrigObj J\Psi muon RunB
+  tree->Branch("nTrigObj_jpsiu_runb", &value_trigobj_jpsiu_runb_n, "nTrigObj_jpsiu_runb/I");
+  tree->Branch("TrigObj_jpsiu_runb_Id", &value_trigobj_jpsiu_runb_id, "TrigObj_jpsiu_runb_id[nTrigObj_jpsiu_runb]/I");
+  tree->Branch("TrigObj_jpsiu_runb_pt", &value_trigobj_jpsiu_runb_pt, "TrigObj_jpsiu_runb_pt[nTrigObj_jpsiu_runb]/F");
+  tree->Branch("TrigObj_jpsiu_runb_eta", &value_trigobj_jpsiu_runb_eta, "TrigObj_jpsiu_runb_eta[nTrigObj_jpsiu_runb]/F");
+  tree->Branch("TrigObj_jpsiu_runb_phi", &value_trigobj_jpsiu_runb_phi, "TrigObj_jpsiu_runb_phi[nTrigObj_jpsiu_runb]/F");
+  tree->Branch("TrigObj_jpsiu_runb_mass", &value_trigobj_jpsiu_runb_mass, "TrigObj_jpsiu_runb_mass[nTrigObj_jpsiu_runb]/F");
 
   // Xsec
   tree->Branch("Xsec", &value_Xsec);

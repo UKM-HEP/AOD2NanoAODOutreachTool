@@ -1,13 +1,10 @@
 # Only muonia
-# hltVertexmumuFilterJpsi
 HLT_Dimuon0_Jpsi
-# hltVertexmumuFilterJpsiMuon
 HLT_Dimuon0_Jpsi_Muon
-# hltVertexmumuFilterDiMuon6LowMass
 HLT_Dimuon6_LowMass
-# hltDiMuonL3PreFiltered3
 HLT_DoubleMu3
-# hltMu5Track2JpsiTrackMassFiltered
 HLT_Mu5_Track2_Jpsi
-# hltMu7Track7JpsiTrackMassFiltered
 HLT_Mu7_Track7_Jpsi
+HLT_DoubleMu3_Jpsi
+HLT_DoubleMu3_LowMass
+HLT_Dimuon10_Jpsi_Barrel
