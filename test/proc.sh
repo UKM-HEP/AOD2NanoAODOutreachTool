@@ -20,8 +20,8 @@ checkExit() {
 
 # testing j/psi
 #./run.sh CMS_Run2011A_MuEG_AOD_12Oct2013-v1_test.txt 500 2011  FT_53_LV5_AN1
-./run.sh CMS_Run2011A_MuOnia_AOD_12Oct2013-v1.txt 500 2011  FT_53_LV5_AN1
-./run.sh CMS_Run2011B_MuOnia_AOD_12Oct2013-v1.txt 500 2011  FT_53_LV5_AN1
+./run.sh CMS_Run2011A_MuOnia_AOD_12Oct2013-v1.txt 5000 2011  FT_53_LV5_AN1
+./run.sh CMS_Run2011B_MuOnia_AOD_12Oct2013-v1.txt 5000 2011  FT_53_LV5_AN1
 #checkExit 1
 
 #echo "TEST 2 : Running 7TeV on MC"
@@ -30,8 +30,8 @@ checkExit() {
 #checkExit 2
 
 #echo "TEST 3 : Running 8TeV on DATA"
-./run.sh CMS_Run2012A_SingleMu_AOD_22Jan2013-v1_test.txt 500 2012 FT53_V21A_AN6_FULL
-./run.sh CMS_Run2012B_SingleMu_AOD_22Jan2013-v1_test.txt 500 2012 FT53_V21A_AN6_FULL
+#./run.sh CMS_Run2012A_SingleMu_AOD_22Jan2013-v1_test.txt 500 2012 FT53_V21A_AN6_FULL
+#./run.sh CMS_Run2012B_SingleMu_AOD_22Jan2013-v1_test.txt 500 2012 FT53_V21A_AN6_FULL
 #./run.sh CMS_Run2012C_SingleMu_AOD_22Jan2013-v1_test.txt 5 2012 FT53_V21A_AN6_FULL
 #./run.sh CMS_Run2012B_SingleElectron_AOD_22Jan2013-v1.txt 50000 2012 FT53_V21A_AN6_FULL
 #checkExit 3

@@ -81,8 +81,9 @@ void AOD2NanoAOD::fillTriggerObj(edm::Handle<trigger::TriggerEvent> &trigEvent){
     // HLT_DoubleMu3_LowMass_v1 : hltDiMuonL3PreFiltered3LowMass 	
     // Run2011B_Muonia : HLT_Dimuon0_Jpsi_Muon_v7 : hltVertexmumuFilterJpsiMuon
     // HLT_DoubleMu3_v10 : hltDiMuonL3PreFiltered3
-    size_type jpsiu_filterIndex_RunA = trigEvent->filterIndex( edm::InputTag( "hltDiMuonL3PreFiltered3LowMass" , "" , trigEventTag.process() ) );
-    size_type jpsiu_filterIndex_RunB = trigEvent->filterIndex( edm::InputTag( "hltVertexmumuFilterJpsiMuon" , "" , trigEventTag.process() ) );
+    // HLT_DoubleMu3_Quarkonium : hltDoubleMu3QuarkoniumL3Filtered
+    size_type jpsiu_filterIndex_RunA = trigEvent->filterIndex( edm::InputTag( "hltDoubleMu3QuarkoniumL3Filtered" , "" , trigEventTag.process() ) );
+    size_type jpsiu_filterIndex_RunB = trigEvent->filterIndex( edm::InputTag( "hltVertexmumuFilterDimuon10JpsiBarrel" , "" , trigEventTag.process() ) );
     if( jpsiu_filterIndex_RunA < nF ){
       const Keys& trigKeys = trigEvent->filterKeys(jpsiu_filterIndex_RunA);
 
